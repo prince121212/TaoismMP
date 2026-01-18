@@ -67,6 +67,13 @@ Page({
   onShow() {
     // 每次显示页面时重置状态
     this.startAccelerometer()
+
+    // 设置自定义 TabBar 选中状态
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 0
+      })
+    }
   },
 
   onHide() {
