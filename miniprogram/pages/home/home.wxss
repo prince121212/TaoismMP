@@ -345,12 +345,14 @@
 
 .card-actions {
   display: flex;
+  gap: 20rpx;
   justify-content: center;
   margin-top: 32rpx;
 }
 
 .action-btn {
-  width: 400rpx;
+  flex: 1;
+  max-width: 300rpx;
   height: 80rpx;
   border-radius: 40rpx;
   display: flex;
@@ -368,6 +370,12 @@
   background: linear-gradient(135deg, #D4AF37 0%, #C5A028 100%);
   color: #FFFFFF;
   box-shadow: 0 4rpx 12rpx rgba(212, 175, 55, 0.3);
+}
+
+.action-btn.secondary {
+  background: linear-gradient(135deg, #C8102E 0%, #A00D24 100%);
+  color: #FFFFFF;
+  box-shadow: 0 4rpx 12rpx rgba(200, 16, 46, 0.3);
 }
 
 .expand-hint {

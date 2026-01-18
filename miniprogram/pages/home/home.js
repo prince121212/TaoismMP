@@ -89,6 +89,27 @@ Page({
     }
   },
 
+  // 分享功能
+  onShareAppMessage() {
+    const sign = this.data.currentSign
+
+    // 如果有签文，分享签文内容
+    if (sign) {
+      return {
+        title: `我抽到了第${sign.number}签【${sign.level}】：${sign.poem}`,
+        path: `/pages/home/home?scene=${sign.number}`,
+        imageUrl: '' // 可以设置分享图片
+      }
+    }
+
+    // 默认分享
+    return {
+      title: '朕瓷灵签 - 赵公明财神灵签',
+      path: '/pages/home/home',
+      imageUrl: ''
+    }
+  },
+
 
   // 处理扫码进入
   handleScanCode(scene) {

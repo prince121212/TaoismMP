@@ -78,8 +78,11 @@
 
     <!-- 操作按钮 -->
     <view class="card-actions">
+      <button class="action-btn secondary" open-type="share">
+        <text>📤 分享签文</text>
+      </button>
       <button class="action-btn primary" bindtap="handleContinue">
-        <text>再求一签</text>
+        <text>🎲 再求一签</text>
       </button>
     </view>
   </view>
