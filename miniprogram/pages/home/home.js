@@ -93,7 +93,7 @@ Page({
     // 如果有签文，分享签文内容
     if (sign) {
       return {
-        title: `我抽到了第${sign.number}签【${sign.level}】：${sign.poem}`,
+        title: `我抽到了第${sign.number}签【${sign.title}】：${sign.poem}`,
         path: `/pages/home/home?scene=${sign.number}`
       }
     }
