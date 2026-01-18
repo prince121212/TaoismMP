@@ -97,16 +97,14 @@ Page({
     if (sign) {
       return {
         title: `我抽到了第${sign.number}签【${sign.level}】：${sign.poem}`,
-        path: `/pages/home/home?scene=${sign.number}`,
-        imageUrl: '' // 可以设置分享图片
+        path: `/pages/home/home?scene=${sign.number}`
       }
     }
 
     // 默认分享
     return {
       title: '朕瓷灵签 - 赵公明财神灵签',
-      path: '/pages/home/home',
-      imageUrl: ''
+      path: '/pages/home/home'
     }
   },
 
