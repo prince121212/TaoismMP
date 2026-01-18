@@ -1,9 +1,6 @@
 // miniprogram/pages/home/home.js
 const signs = require('../../data/signs')
 
-// 引入微信同声传译插件
-const plugin = requirePlugin("WechatSI")
-
 Page({
   data: {
     isDrawing: false,
