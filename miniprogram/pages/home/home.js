@@ -19,10 +19,11 @@ Page({
 
   // 摇一摇相关
   lastShakeTime: 0,
-  shakeThreshold: 15, // 摇晃阈值
-  lastX: 0,
-  lastY: 0,
-  lastZ: 0,
+  shakeThreshold: 1.5, // 摇晃阈值（降低以提高灵敏度）
+  lastX: null,
+  lastY: null,
+  lastZ: null,
+  isShaking: false, // 是否正在摇晃检测中
 
   onLoad(options) {
     // 创建音频上下文
@@ -138,10 +139,17 @@ Page({
 
   // 启动加速度计监听
   startAccelerometer() {
+    // 先停止之前的监听，避免重复监听
+    this.stopAccelerometer()
+
     wx.startAccelerometer({
-      interval: 'game',
+      interval: 'normal', // 改为 normal，降低检测频率
       success: () => {
+        console.log('加速度计启动成功')
         wx.onAccelerometerChange(this.onAccelerometerChange.bind(this))
+      },
+      fail: (err) => {
+        console.error('加速度计启动失败', err)
       }
     })
   },
@@ -154,27 +162,56 @@ Page({
 
   // 加速度变化回调
   onAccelerometerChange(res) {
-    if (this.data.isDrawing) return
+    // 如果正在抽签或已有签文结果，则不响应摇一摇
+    if (this.data.isDrawing || this.data.currentSign) return
 
     const { x, y, z } = res
     const now = Date.now()
 
-    // 计算加速度变化
+    // 初始化：第一次获取加速度数据时，只记录不触发
+    if (this.lastX === null || this.lastY === null || this.lastZ === null) {
+      this.lastX = x
+      this.lastY = y
+      this.lastZ = z
+      return
+    }
+
+    // 计算加速度变化（绝对值）
     const deltaX = Math.abs(x - this.lastX)
     const deltaY = Math.abs(y - this.lastY)
     const deltaZ = Math.abs(z - this.lastZ)
+
+    // 计算总加速度变化（向量和）
+    const acceleration = Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ)
 
     // 更新上次的值
     this.lastX = x
     this.lastY = y
     this.lastZ = z
 
+    // 调试日志
+    console.log('加速度变化:', {
+      deltaX: deltaX.toFixed(2),
+      deltaY: deltaY.toFixed(2),
+      deltaZ: deltaZ.toFixed(2),
+      acceleration: acceleration.toFixed(2),
+      threshold: this.shakeThreshold
+    })
+
     // 判断是否达到摇晃阈值
-    if ((deltaX > this.shakeThreshold || deltaY > this.shakeThreshold || deltaZ > this.shakeThreshold)) {
-      // 防止频繁触发（1秒内只触发一次）
-      if (now - this.lastShakeTime > 1000) {
+    if (acceleration > this.shakeThreshold) {
+      // 防抖：3秒内只触发一次
+      if (now - this.lastShakeTime > 3000) {
+        console.log('检测到摇晃！触发抽签')
         this.lastShakeTime = now
         this.handleDraw()
+
+        // 震动反馈
+        wx.vibrateShort({
+          type: 'medium'
+        })
+      } else {
+        console.log('摇晃过于频繁，已忽略')
       }
     }
   },
