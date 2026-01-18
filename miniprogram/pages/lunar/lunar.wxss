@@ -1,0 +1,223 @@
+/* miniprogram/pages/lunar/lunar.wxss */
+
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20rpx;
+}
+
+/* 加载状态 */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #fff;
+  font-size: 32rpx;
+}
+
+/* 黄历内容 */
+.lunar-content {
+  padding-bottom: 40rpx;
+}
+
+/* 日期卡片 */
+.date-card {
+  background: linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%);
+  border-radius: 20rpx;
+  padding: 40rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.solar-date {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 20rpx;
+}
+
+.solar-date .year {
+  font-size: 28rpx;
+  color: #8B4513;
+  margin-right: 10rpx;
+}
+
+.solar-date .month-day {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #8B4513;
+  margin-right: 20rpx;
+}
+
+.solar-date .weekday {
+  font-size: 28rpx;
+  color: #A0522D;
+}
+
+.lunar-date {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.lunar-date .gan-zhi {
+  font-size: 32rpx;
+  color: #8B0000;
+  font-weight: bold;
+  margin-right: 10rpx;
+}
+
+.lunar-date .sheng-xiao {
+  font-size: 28rpx;
+  color: #8B0000;
+  margin-right: 20rpx;
+}
+
+.lunar-date .lunar-text {
+  font-size: 32rpx;
+  color: #8B4513;
+  font-weight: bold;
+}
+
+/* 节气 */
+.jie-qi {
+  margin-top: 20rpx;
+  padding: 15rpx 25rpx;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 30rpx;
+  display: inline-flex;
+  align-items: center;
+}
+
+.jie-qi-icon {
+  font-size: 32rpx;
+  margin-right: 10rpx;
+}
+
+.jie-qi-text {
+  font-size: 28rpx;
+  color: #8B4513;
+  font-weight: bold;
+}
+
+/* 宜忌卡片 */
+.yi-ji-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.yi-section, .ji-section {
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15rpx;
+}
+
+.section-title .icon {
+  font-size: 32rpx;
+  margin-right: 10rpx;
+}
+
+.section-title .title-text {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15rpx;
+}
+
+.item {
+  padding: 10rpx 20rpx;
+  border-radius: 30rpx;
+  font-size: 26rpx;
+}
+
+.yi-item {
+  background: #E8F5E9;
+  color: #2E7D32;
+}
+
+.ji-item {
+  background: #FFEBEE;
+  color: #C62828;
+}
+
+.divider {
+  height: 1rpx;
+  background: #E0E0E0;
+  margin: 20rpx 0;
+}
+
+/* 吉时卡片 */
+.ji-shi-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.card-title .icon {
+  font-size: 32rpx;
+  margin-right: 10rpx;
+}
+
+.card-title .title-text {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.ji-shi-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15rpx;
+}
+
+.ji-shi-item {
+  background: linear-gradient(135deg, #FFF8DC 0%, #FFE4B5 100%);
+  padding: 20rpx;
+  border-radius: 15rpx;
+  text-align: center;
+}
+
+.shi-chen {
+  font-size: 26rpx;
+  color: #8B4513;
+  font-weight: bold;
+}
+
+/* 刷新按钮 */
+.refresh-btn {
+  background: linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%);
+  color: #8B4513;
+  padding: 25rpx;
+  border-radius: 50rpx;
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-top: 20rpx;
+  box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.refresh-btn:active {
+  opacity: 0.8;
+  transform: scale(0.98);
+}
+

@@ -1,0 +1,77 @@
+<!-- miniprogram/pages/lunar/lunar.wxml -->
+<view class="container">
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading">
+    <text>加载中...</text>
+  </view>
+
+  <!-- 黄历内容 -->
+  <view wx:else class="lunar-content">
+    
+    <!-- 日期卡片 -->
+    <view class="date-card">
+      <view class="solar-date">
+        <text class="year">{{lunarInfo.solar.year}}年</text>
+        <text class="month-day">{{lunarInfo.solar.month}}月{{lunarInfo.solar.day}}日</text>
+        <text class="weekday">{{lunarInfo.solar.weekday}}</text>
+      </view>
+      
+      <view class="lunar-date">
+        <text class="gan-zhi">{{lunarInfo.lunar.ganZhi}}</text>
+        <text class="sheng-xiao">【{{lunarInfo.lunar.shengXiao}}年】</text>
+        <text class="lunar-text">{{lunarInfo.lunar.monthStr}}{{lunarInfo.lunar.dayStr}}</text>
+      </view>
+      
+      <!-- 节气 -->
+      <view wx:if="{{lunarInfo.jieQi}}" class="jie-qi">
+        <text class="jie-qi-icon">🌸</text>
+        <text class="jie-qi-text">{{lunarInfo.jieQi}}</text>
+      </view>
+    </view>
+
+    <!-- 宜忌卡片 -->
+    <view class="yi-ji-card">
+      <view class="yi-section">
+        <view class="section-title">
+          <text class="icon">✅</text>
+          <text class="title-text">宜</text>
+        </view>
+        <view class="items">
+          <text wx:for="{{lunarInfo.yi}}" wx:key="index" class="item yi-item">{{item}}</text>
+        </view>
+      </view>
+
+      <view class="divider"></view>
+
+      <view class="ji-section">
+        <view class="section-title">
+          <text class="icon">⛔</text>
+          <text class="title-text">忌</text>
+        </view>
+        <view class="items">
+          <text wx:for="{{lunarInfo.ji}}" wx:key="index" class="item ji-item">{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 吉时卡片 -->
+    <view class="ji-shi-card">
+      <view class="card-title">
+        <text class="icon">⏰</text>
+        <text class="title-text">今日吉时</text>
+      </view>
+      <view class="ji-shi-list">
+        <view wx:for="{{lunarInfo.jiShi}}" wx:key="index" class="ji-shi-item">
+          <text class="shi-chen">{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 刷新按钮 -->
+    <view class="refresh-btn" bindtap="onRefresh">
+      <text>刷新黄历</text>
+    </view>
+
+  </view>
+</view>
+
