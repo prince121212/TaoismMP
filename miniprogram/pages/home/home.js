@@ -394,49 +394,11 @@ Page({
     return 0
   },
 
-  // 语音播报签诗（使用微信同声传译插件）
+  // 语音播报签诗（暂时禁用）
   speakPoem() {
-    if (!this.data.currentSign) return
-
-    const text = this.data.currentSign.poem
-    console.log('开始语音播报:', text)
-
-    // 使用微信同声传译插件进行语音合成
-    plugin.textToSpeech({
-      lang: "zh_CN",
-      tts: true,
-      content: text,
-      success: (res) => {
-        console.log('语音合成成功', res)
-
-        // 创建音频上下文播放合成的语音
-        const innerAudioContext = wx.createInnerAudioContext()
-        innerAudioContext.src = res.filename
-
-        innerAudioContext.onPlay(() => {
-          console.log('开始播放语音')
-        })
-
-        innerAudioContext.onEnded(() => {
-          console.log('语音播放完成')
-        })
-
-        innerAudioContext.onError((err) => {
-          console.error('音频播放失败', err)
-        })
-
-        // 播放语音
-        innerAudioContext.play()
-      },
-      fail: (err) => {
-        console.error('语音合成失败', err)
-        wx.showToast({
-          title: '语音播报失败',
-          icon: 'none',
-          duration: 2000
-        })
-      }
-    })
+    // 功能暂时禁用
+    // TODO: 后续可以使用微信原生 TTS API 或录制音频文件实现
+    console.log('语音播报功能暂时禁用')
   },
 
   // 切换详情展开/收起
