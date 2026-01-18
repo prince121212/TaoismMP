@@ -1,6 +1,9 @@
 // miniprogram/pages/home/home.js
 const signs = require('../../data/signs')
 
+// 引入微信同声传译插件
+const plugin = requirePlugin("WechatSI")
+
 Page({
   data: {
     isDrawing: false,
@@ -331,52 +334,42 @@ Page({
     return 0
   },
 
-  // 语音播报签诗
+  // 语音播报签诗（使用微信同声传译插件）
   speakPoem() {
     if (!this.data.currentSign) return
 
     const text = this.data.currentSign.poem
+    console.log('开始语音播报:', text)
 
-    // 获取系统信息
-    const systemInfo = wx.getSystemInfoSync()
-    const SDKVersion = systemInfo.SDKVersion
-
-    console.log('当前基础库版本:', SDKVersion)
-
-    // 检查基础库版本是否支持 wx.startSpeechSynthesis (需要 2.16.0+)
-    if (this.compareVersion(SDKVersion, '2.16.0') < 0) {
-      console.log('基础库版本过低，不支持语音播报API')
-      wx.showToast({
-        title: '当前微信版本过低，请更新微信',
-        icon: 'none',
-        duration: 2000
-      })
-      return
-    }
-
-    // 检查API是否存在
-    if (typeof wx.startSpeechSynthesis !== 'function') {
-      console.log('当前环境不支持语音播报API')
-      wx.showToast({
-        title: '当前设备不支持语音播报',
-        icon: 'none',
-        duration: 2000
-      })
-      return
-    }
-
-    // 使用微信官方语音合成API
-    wx.startSpeechSynthesis({
-      lang: 'zh_CN',
-      text: text,
-      rate: 0.8,
-      pitch: 1.0,
-      volume: 1.0,
+    // 使用微信同声传译插件进行语音合成
+    plugin.textToSpeech({
+      lang: "zh_CN",
+      tts: true,
+      content: text,
       success: (res) => {
-        console.log('语音播报成功', res)
+        console.log('语音合成成功', res)
+
+        // 创建音频上下文播放合成的语音
+        const innerAudioContext = wx.createInnerAudioContext()
+        innerAudioContext.src = res.filename
+
+        innerAudioContext.onPlay(() => {
+          console.log('开始播放语音')
+        })
+
+        innerAudioContext.onEnded(() => {
+          console.log('语音播放完成')
+        })
+
+        innerAudioContext.onError((err) => {
+          console.error('音频播放失败', err)
+        })
+
+        // 播放语音
+        innerAudioContext.play()
       },
       fail: (err) => {
-        console.log('语音播报失败', err)
+        console.error('语音合成失败', err)
         wx.showToast({
           title: '语音播报失败',
           icon: 'none',
