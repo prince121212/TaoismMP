@@ -423,8 +423,6 @@ Page({
     })
   },
 
-
-
   // 继续抽签
   handleContinue() {
     this.setData({
