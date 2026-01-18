@@ -87,21 +87,36 @@ Page({
   },
 
   // 分享功能
-  onShareAppMessage() {
-    const sign = this.data.currentSign
+  onShareAppMessage(res) {
+    try {
+      console.log('onShareAppMessage 被调用', res)
 
-    // 如果有签文，分享签文内容
-    if (sign) {
-      return {
-        title: `我抽到了第${sign.number}签【${sign.title}】：${sign.poem}`,
-        path: `/pages/home/home?scene=${sign.number}`
+      const sign = this.data.currentSign
+
+      // 如果有签文，分享签文内容
+      if (sign) {
+        const shareData = {
+          title: `我抽到了第${sign.number}签【${sign.title}】：${sign.poem}`,
+          path: `/pages/home/home?scene=${sign.number}`
+        }
+        console.log('返回分享数据:', shareData)
+        return shareData
       }
-    }
 
-    // 默认分享
-    return {
-      title: '朕瓷灵签 - 赵公明财神灵签',
-      path: '/pages/home/home'
+      // 默认分享
+      const defaultShareData = {
+        title: '朕瓷灵签 - 赵公明财神灵签',
+        path: '/pages/home/home'
+      }
+      console.log('返回默认分享数据:', defaultShareData)
+      return defaultShareData
+    } catch (error) {
+      console.error('onShareAppMessage 错误:', error)
+      // 返回最简单的分享配置
+      return {
+        title: '朕瓷灵签',
+        path: '/pages/home/home'
+      }
     }
   },
 
