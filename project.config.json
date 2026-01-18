@@ -1,0 +1,26 @@
+{
+  "appid": "wx640831368d15e774",
+  "projectname": "zhenci-lingqian",
+  "description": "朕瓷灵签 - 道教抽签解签小程序",
+  "miniprogramRoot": "miniprogram/",
+  "compileType": "miniprogram",
+  "libVersion": "3.13.2",
+  "simulatorType": "wechat",
+  "condition": {},
+  "srcMiniprogramRoot": "miniprogram/",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "setting": {
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    }
+  },
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  }
+}
