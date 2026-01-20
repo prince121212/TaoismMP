@@ -1,5 +1,8 @@
 <!--miniprogram/pages/home/home.wxml-->
 <view class="draw-page">
+  <!-- 背景图片 -->
+  <image class="bg-image" src="/assets/images/bg.jpg" mode="aspectFill"></image>
+
   <!-- 顶部装饰 -->
   <view class="header-decoration">
     <view class="title">朕瓷灵签</view>
@@ -89,7 +92,6 @@
 
   <!-- 空状态提示 -->
   <view wx:else class="empty-hint">
-    <text class="hint-icon">🙏</text>
     <text class="hint-text">诚心祈愿，点击签筒开始抽签</text>
   </view>
 </view>

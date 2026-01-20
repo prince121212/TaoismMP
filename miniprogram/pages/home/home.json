@@ -1,7 +1,3 @@
 {
-  "usingComponents": {},
-  "navigationBarBackgroundColor": "#C8102E",
-  "navigationBarTextStyle": "white",
-  "navigationBarTitleText": "朕瓷灵签"
+  "enableShareAppMessage": true
 }
-

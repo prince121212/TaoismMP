@@ -1,6 +1,13 @@
 // miniprogram/pages/home/home.js
 const signs = require('../../data/signs')
 
+let plugin = null
+try {
+  plugin = requirePlugin("WechatSI")
+} catch (e) {
+  console.warn('插件加载失败:', e)
+}
+
 Page({
   data: {
     isDrawing: false,
@@ -87,36 +94,19 @@ Page({
   },
 
   // 分享功能
-  onShareAppMessage(res) {
-    try {
-      console.log('onShareAppMessage 被调用', res)
+  onShareAppMessage(options) {
+    const sign = this.data.currentSign
 
-      const sign = this.data.currentSign
-
-      // 如果有签文，分享签文内容
-      if (sign) {
-        const shareData = {
-          title: `我抽到了第${sign.number}签【${sign.title}】：${sign.poem}`,
-          path: `/pages/home/home?scene=${sign.number}`
-        }
-        console.log('返回分享数据:', shareData)
-        return shareData
-      }
-
-      // 默认分享
-      const defaultShareData = {
-        title: '朕瓷灵签 - 赵公明财神灵签',
-        path: '/pages/home/home'
-      }
-      console.log('返回默认分享数据:', defaultShareData)
-      return defaultShareData
-    } catch (error) {
-      console.error('onShareAppMessage 错误:', error)
-      // 返回最简单的分享配置
+    if (sign) {
       return {
-        title: '朕瓷灵签',
-        path: '/pages/home/home'
+        title: `我抽到了第${sign.number}签【${sign.title}】`,
+        path: `/pages/home/home?status=${sign.number}`
       }
+    }
+
+    return {
+      title: '朕瓷灵签 - 赵公明财神灵签',
+      path: '/pages/home/home'
     }
   },
 
@@ -409,11 +399,55 @@ Page({
     return 0
   },
 
-  // 语音播报签诗（暂时禁用）
+  // 语音播报签诗
   speakPoem() {
-    // 功能暂时禁用
-    // TODO: 后续可以使用微信原生 TTS API 或录制音频文件实现
-    console.log('语音播报功能暂时禁用')
+    if (!this.data.currentSign) return
+
+    if (!plugin) {
+      wx.showToast({
+        title: '语音插件未加载',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+
+    const text = this.data.currentSign.poem
+    console.log('开始语音播报:', text)
+
+    plugin.textToSpeech({
+      lang: "zh_CN",
+      tts: true,
+      content: text,
+      success: (res) => {
+        console.log('语音合成成功', res)
+
+        const innerAudioContext = wx.createInnerAudioContext()
+        innerAudioContext.src = res.filename
+
+        innerAudioContext.onPlay(() => {
+          console.log('开始播放语音')
+        })
+
+        innerAudioContext.onEnded(() => {
+          console.log('语音播放完成')
+        })
+
+        innerAudioContext.onError((err) => {
+          console.error('音频播放失败', err)
+        })
+
+        innerAudioContext.play()
+      },
+      fail: (err) => {
+        console.error('语音合成失败', err)
+        wx.showToast({
+          title: '语音播报失败',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    })
   },
 
   // 切换详情展开/收起
