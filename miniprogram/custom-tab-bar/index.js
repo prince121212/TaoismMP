@@ -5,7 +5,7 @@ Component({
     selectedColor: "#FFFFFF",
     list: [
       {
-        pagePath: "/pages/home/home",
+        pagePath: "/pages/lottery/lottery",
         text: "抽签"
       },
       {

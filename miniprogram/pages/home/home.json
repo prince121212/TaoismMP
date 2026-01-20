@@ -1,3 +1,5 @@
 {
-  "enableShareAppMessage": true
+  "navigationBarTitleText": "瓷文化",
+  "navigationBarBackgroundColor": "#C8102E",
+  "navigationBarTextStyle": "white"
 }

@@ -1,0 +1,98 @@
+<!--miniprogram/pages/home/home.wxml-->
+<view class="draw-page">
+  <!-- 背景图片 -->
+  <image class="bg-image" src="/assets/images/bg.jpg" mode="aspectFill"></image>
+
+  <!-- 顶部装饰 -->
+  <view class="header-decoration">
+    <view class="title">朕瓷灵签</view>
+    <view class="subtitle">诚心祈愿 · 问卜前程</view>
+  </view>
+
+  <!-- 签筒动画区域（可点击） -->
+  <view class="drum-area" bindtap="handleDraw">
+    <!-- 摇晃手机提示图片（左侧） -->
+    <view class="shake-hint shake-hint-left" wx:if="{{!isDrawing && !currentSign}}">
+      <image
+        src="/assets/images/ss.png"
+        class="shake-hint-image"
+        mode="aspectFit"
+      ></image>
+    </view>
+
+    <view class="drum-container {{isDrawing ? 'shaking' : ''}}">
+      <!-- 签筒图片 -->
+      <image
+        src="/assets/images/drum.png"
+        class="drum-image"
+        mode="aspectFit"
+      ></image>
+
+      <!-- 弹出的签条 -->
+      <view wx:if="{{showStick}}" class="flying-stick" animation="{{stickAnimation}}">
+        <view class="stick-body">
+          <text class="stick-number">{{currentSign ? currentSign.number : ''}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 摇晃手机提示图片（右侧） -->
+    <view class="shake-hint shake-hint-right" wx:if="{{!isDrawing && !currentSign}}">
+      <image
+        src="/assets/images/ss.png"
+        class="shake-hint-image"
+        mode="aspectFit"
+      ></image>
+    </view>
+
+    <view class="drum-shadow"></view>
+  </view>
+
+  <!-- 签文结果卡片 -->
+  <view wx:if="{{currentSign}}" class="result-card {{showResultCard ? 'show' : ''}}">
+    <!-- 基础信息 -->
+    <view class="card-header">
+      <view class="sign-number">第 {{currentSign.number}} 签</view>
+      <view class="sign-level">【{{currentSign.name}}】</view>
+    </view>
+
+    <view class="card-body">
+      <view class="sign-title">{{currentSign.title}}</view>
+      <view class="sign-poem">{{currentSign.poem}}</view>
+    </view>
+
+    <!-- 详细解签（直接显示） -->
+    <view class="card-detail">
+      <view class="detail-section">
+        <view class="section-title">圣意</view>
+        <view class="section-content">{{currentSign.shengyi}}</view>
+      </view>
+
+      <view class="detail-section">
+        <view class="section-title">解曰</view>
+        <view class="section-content">{{currentSign.meaning}}</view>
+      </view>
+
+      <view class="detail-section">
+        <view class="section-title">释义</view>
+        <view class="section-content">{{currentSign.advice}}</view>
+      </view>
+    </view>
+
+    <!-- 操作按钮 -->
+    <view class="card-actions">
+      <button class="action-btn secondary" open-type="share">
+        <text>📤 分享签文</text>
+      </button>
+      <button class="action-btn primary" bindtap="handleContinue">
+        <text>🎲 再求一签</text>
+      </button>
+    </view>
+  </view>
+
+  <!-- 空状态提示 -->
+  <view wx:else class="empty-hint">
+    <text class="hint-text">诚心祈愿，点击签筒开始抽签</text>
+  </view>
+</view>
+

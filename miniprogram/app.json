@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/culture/culture",
     "pages/home/home",
+    "pages/lottery/lottery",
     "pages/lunar/lunar"
   ],
   "window": {
@@ -19,7 +19,7 @@
     "borderStyle": "white",
     "list": [
       {
-        "pagePath": "pages/home/home",
+        "pagePath": "pages/lottery/lottery",
         "text": "抽签"
       },
       {
