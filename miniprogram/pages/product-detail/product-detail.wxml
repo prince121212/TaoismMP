@@ -1,0 +1,48 @@
+<view class="detail-page" wx:if="{{product}}">
+  <!-- 商品图片轮播 -->
+  <swiper class="product-swiper" indicator-dots indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#C8102E" bindchange="onImageChange">
+    <swiper-item wx:for="{{product.images}}" wx:key="index">
+      <image class="product-swiper-image" src="{{item}}" mode="aspectFill" bindtap="previewImage" data-url="{{item}}"></image>
+    </swiper-item>
+  </swiper>
+
+  <!-- 图片指示器 -->
+  <view class="image-indicator">{{currentImageIndex + 1}} / {{product.images.length}}</view>
+
+  <!-- 商品信息 -->
+  <view class="product-info">
+    <view class="product-name">{{product.name}}</view>
+    <view class="product-price-row">
+      <view class="product-price">¥{{product.price}}</view>
+      <view class="product-id">商品ID: {{product.id}}</view>
+    </view>
+    <view class="product-category">
+      <text class="category-label">分类：</text>
+      <text class="category-value">{{product.fullCategory}}</text>
+    </view>
+  </view>
+
+  <!-- 商品详情 -->
+  <view class="product-detail">
+    <view class="detail-title">商品详情</view>
+    <view class="detail-images">
+      <image wx:for="{{product.images}}" wx:key="index" class="detail-image" src="{{item}}" mode="widthFix" bindtap="previewImage" data-url="{{item}}"></image>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar">
+    <button class="share-btn" open-type="share">
+      <text class="btn-icon">📤</text>
+      <text>分享</text>
+    </button>
+    <button class="contact-btn" open-type="contact">
+      <text class="btn-icon">💬</text>
+      <text>联系客服</text>
+    </button>
+  </view>
+</view>
+
+<view class="empty-state" wx:else>
+  <text>商品不存在</text>
+</view>

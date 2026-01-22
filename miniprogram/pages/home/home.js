@@ -1,6 +1,9 @@
+const productsData = require('../../data/products.js')
+
 Page({
   data: {
     currentPage: 1,
+    storeAppId: 'wx00e73e9c7a1948ce', // 微信小店AppID
     travelData: [
       {
         title: '景德镇古窑民俗博览区',
@@ -23,108 +26,7 @@ Page({
         content: '隐藏在山林中的陶艺村，众多艺术家在此创作。环境清幽，可以体验陶艺制作，感受艺术氛围。'
       }
     ],
-    productData: [
-      {
-        name: '58头皇家花园—蓝',
-        category: '骨瓷餐具 > 至尊珐琅彩',
-        image: 'https://si.geilicdn.com/weidian1286456178-55d6000001762c2971520a217216_1560_2340.jpg.webp?w=640&h=640'
-      },
-      {
-        name: '76头金镶玉',
-        category: '高温白玉瓷餐具 > 颜色釉',
-        image: 'https://si.geilicdn.com/pcitem1286456178-38f600000170f155148a0a21348d_1002_1709.jpg.webp?w=640&h=640'
-      },
-      {
-        name: '68头 如愿 餐具',
-        category: '骨瓷餐具 > 手工镶金',
-        image: 'https://si.geilicdn.com/pcitem1286456178-243900000189f2d6adae0a23136f_4160_6240.jpg.webp?w=750&h=750&cp=1'
-      },
-      {
-        name: '手绘玲珑珠联碧合盖碗茶具',
-        category: '手绘茶具 > 玲珑盖碗套装',
-        image: 'https://si.geilicdn.com/pcitem1286456178-675d0000019034d05e7e0a2102c5_1280_1777.jpg.webp?w=640&h=640'
-      },
-      {
-        name: '9头玲珑鱼',
-        category: '手绘茶具 > 玲珑壶组套装',
-        image: 'https://si.geilicdn.com/pcitem1286456178-139c00000170ba76804a0a217216_3168_3168.jpg.webp?w=640&h=640'
-      },
-      {
-        name: '9头玲珑缠枝鸿福',
-        category: '手绘茶具 > 玲珑壶组套装',
-        image: 'https://si.geilicdn.com/pcitem1286456178-237800000170b932aab20a21348d_1386_2079.jpg.webp?w=640&h=640'
-      },
-      {
-        name: '中国红茶具',
-        category: '品牌 > 国外',
-        image: 'https://si.geilicdn.com/pcitem1286456178-5a2a00000170ba6086cd0a21c2a7_5472_3648.jpg.webp?w=640&h=640'
-      },
-      {
-        name: '15头青出于兰',
-        category: '品牌 > 国外',
-        image: 'https://si.geilicdn.com/pcitem1286456178-2eb300000170ba5863240a21c2a8_3648_5472.jpg.webp?w=750&h=750&cp=1'
-      },
-      {
-        name: '中国红口杯',
-        category: '品牌 > 国外',
-        image: 'https://si.geilicdn.com/pcitem1286456178-086f00000170ba5e48530a217205_5398_3599.jpg.webp?w=750&h=750&cp=1'
-      },
-      {
-        name: '32头雀翔',
-        category: '品牌 > 国外',
-        image: 'https://si.geilicdn.com/pcitem1286456178-001b00000170ba6674960a21c2a8_5472_3648.jpg.webp?w=750&h=750&cp=1'
-      },
-      {
-        name: '76头皇家御品 红',
-        category: '高温白玉瓷餐具 > 臻品珐琅彩',
-        image: 'https://si.geilicdn.com/pcitem1286456178-4fde00000171731b074c0a217216_1386_2079.jpg.webp?w=640&h=640'
-      },
-      {
-        name: '76头皇家御品',
-        category: '高温白玉瓷餐具 > 臻品珐琅彩',
-        image: 'https://si.geilicdn.com/wdseller1286456178-509d00000171730a3aa20a20b7b9_554_589.jpg.webp?w=750&h=750&cp=1'
-      },
-      {
-        name: '86头珐琅彩-帝王黄',
-        category: '骨瓷餐具 > 至尊珐琅彩',
-        image: 'https://si.geilicdn.com/bj-wd-1286456178-1513754942515-1548719032_790_636.jpg.webp?w=640&h=640'
-      },
-      {
-        name: '86头珐琅彩-夫人兰',
-        category: '骨瓷餐具 > 至尊珐琅彩',
-        image: 'https://si.geilicdn.com/bj-wd-1286456178-1513754092668-1220617405_790_563.jpg.webp?w=640&h=640'
-      },
-      {
-        name: '56头青出于蓝',
-        category: '品牌 > 国外',
-        image: 'https://si.geilicdn.com/bj-wd-1286456178-1538810596753-655637623_1126_750.jpg.webp?w=750&h=750&cp=1'
-      },
-      {
-        name: '32头金碧辉煌',
-        category: '品牌 > 国外',
-        image: 'https://si.geilicdn.com/pcitem1286456178-245300000170c3edeb100a21348d_800_800.jpg.webp?w=750&h=750&cp=1'
-      },
-      {
-        name: '58头爱马仕餐具',
-        category: '品牌 > 国外',
-        image: 'https://si.geilicdn.com/pcitem1286456178-119e00000170ba6a618a0a21c2a7_5472_3648.jpg.webp?w=750&h=750&cp=1'
-      },
-      {
-        name: '32头赤道丛林',
-        category: '品牌 > 国外',
-        image: 'https://si.geilicdn.com/pcitem1286456178-5a7100000170c2bb8d0c0a21c2a8_5472_3648.jpg.webp?w=750&h=750&cp=1'
-      },
-      {
-        name: '72头虞美人',
-        category: '高温白玉瓷餐具 > 颜色釉',
-        image: 'https://si.geilicdn.com/pcitem1286456178-63310000017096889aa00a20b7b9_4096_6144.jpg.webp?w=750&h=750&cp=1'
-      },
-      {
-        name: '58头蓝莲',
-        category: '品牌 > 国外',
-        image: 'https://si.geilicdn.com/pcitem1286456178-2fbe00000170c401369e0a217205_5616_3744.jpg.webp?w=640&h=640'
-      }
-    ],
+    productData: productsData,
     cultureData: [
       {
         title: '陶瓷的起源与发展',
@@ -167,6 +69,13 @@ Page({
 
   onLoad() {
     this.checkTaoismType()
+  },
+
+  goToProductDetail(e) {
+    const productId = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: `/pages/product-detail/product-detail?id=${productId}`
+    })
   },
 
   toggleDetail(e) {

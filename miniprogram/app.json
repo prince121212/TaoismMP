@@ -2,7 +2,8 @@
   "pages": [
     "pages/home/home",
     "pages/lottery/lottery",
-    "pages/lunar/lunar"
+    "pages/lunar/lunar",
+    "pages/product-detail/product-detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

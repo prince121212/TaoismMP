@@ -26,6 +26,31 @@
       </scroll-view>
     </swiper-item>
 
+    <!-- 陶瓷推荐 -->
+    <swiper-item>
+      <scroll-view scroll-y class="scroll-content">
+        <view class="page-title">经典陶瓷鉴赏</view>
+        <!-- 微信小店卡片（已隐藏）
+        <navigator class="store-card" target="miniProgram" app-id="{{storeAppId}}" path="pages/shop/shop">
+          <view class="store-card-content">
+            <view class="store-icon">🏪</view>
+            <view class="store-info">
+              <view class="store-title">进入微信小店</view>
+              <view class="store-desc">查看更多精美陶瓷商品</view>
+            </view>
+            <view class="store-arrow">→</view>
+          </view>
+        </navigator>
+        -->
+        <view class="product-card" wx:for="{{productData}}" wx:key="id" bindtap="goToProductDetail" data-id="{{item.id}}">
+          <image class="product-image" src="{{item.coverImage}}" mode="aspectFill"></image>
+          <view class="product-name">{{item.name}}</view>
+          <view class="product-price">¥{{item.price}}</view>
+          <view class="product-category">{{item.fullCategory}}</view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+
     <!-- 瓷文化知识 -->
     <swiper-item>
       <scroll-view scroll-y class="scroll-content">
@@ -35,18 +60,6 @@
           <view class="card-content">{{item.content}}</view>
           <view class="card-detail" wx:if="{{item.expanded}}">{{item.detail}}</view>
           <view class="expand-btn">{{item.expanded ? '收起 ▲' : '展开详情 ▼'}}</view>
-        </view>
-      </scroll-view>
-    </swiper-item>
-
-    <!-- 陶瓷推荐 -->
-    <swiper-item>
-      <scroll-view scroll-y class="scroll-content">
-        <view class="page-title">经典陶瓷推荐</view>
-        <view class="product-card" wx:for="{{productData}}" wx:key="name">
-          <image class="product-image" src="{{item.image}}" mode="aspectFill"></image>
-          <view class="product-name">{{item.name}}</view>
-          <view class="product-category">{{item.category}}</view>
         </view>
       </scroll-view>
     </swiper-item>

@@ -1,6 +1,6 @@
 {
-  "navigationBarTitleText": "瓷文化",
+  "navigationBarTitleText": "商品详情",
   "navigationBarBackgroundColor": "#C8102E",
   "navigationBarTextStyle": "white",
-  "usingComponents": {}
+  "enableShareAppMessage": true
 }
